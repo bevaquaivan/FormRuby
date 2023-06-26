@@ -1,0 +1,29 @@
+<h1>FORM</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>País</th>
+      <th>Año</th>
+      <th>Duración</th>
+      <th>Elenco</th>
+      <th>Equipo técnico completo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ficha_tecnicas.each do |ftecnica| %>
+      <tr>
+        <td><%= ftecnica.pais %></td>
+        <td><%= ftecnica.year %></td>
+        <td><%= ftecnica.duracion %></td>
+        <td><%= ftecnica.elenco %></td>
+        <td><%= ftecnica.etecnicoc %></td>
+        <td>
+          <%= link_to "¡Nuevo!" %>
+          <%= link_to "Editar" %>
+          <%= link_to "Eliminar" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
