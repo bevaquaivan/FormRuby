@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_25_055002) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_234813) do
+  create_table "categoria", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ficha_tecnicas", force: :cascade do |t|
     t.string "pais"
     t.integer "year"
@@ -19,6 +25,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_25_055002) do
     t.text "etecnicoc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "categoria"
+    t.string "titulo"
+    t.string "link"
+    t.string "contraseña"
+    t.string "afiche"
+    t.string "imagen1"
+    t.string "imagen2"
+    t.string "imagen3"
+    t.text "motivacion_direccion"
+    t.text "motivacion_produccion"
+    t.integer "categoria_id"
   end
 
 end

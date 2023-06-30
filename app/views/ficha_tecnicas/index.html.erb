@@ -1,29 +1,35 @@
-<h1>FORM</h1>
+<h1>CONCURSO MYDECK </h1>
+<h3> CONCURSO DE CORTOMETRAJES "MUJERES Y DIVERSIDADES EN CONSTRUCCIÓN" </h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>País</th>
-      <th>Año</th>
-      <th>Duración</th>
-      <th>Elenco</th>
-      <th>Equipo técnico completo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @ficha_tecnicas.each do |ftecnica| %>
-      <tr>
-        <td><%= ftecnica.pais %></td>
-        <td><%= ftecnica.year %></td>
-        <td><%= ftecnica.duracion %></td>
-        <td><%= ftecnica.elenco %></td>
-        <td><%= ftecnica.etecnicoc %></td>
-        <td>
-          <%= link_to "¡Nuevo!" %>
-          <%= link_to "Editar" %>
-          <%= link_to "Eliminar" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= simple_form_for @ficha_tecnica do |f| %>
+
+  <h4>Información General</h4>
+  <%= f.select :categoria_id, options_for_select(['Cortometraje', 'Ficción', 'Animación']), label: "Categoría" %>
+  <%= f.input :titulo, label: "Título" %>
+  <%= f.input :link, label: "Link" %>
+  <%= f.input :contraseña, label: "Contraseña" %>
+  <%= f.input :afiche, label: "Afiche" %>
+
+<h4>Información Técnica</h4>
+  <%= f.input :pais, label: "País" %>
+  <%= f.input :year, label: "Año" %>
+  <%= f.input :duracion, label: "Duración en minutos" %>
+  <%= f.input :elenco, label: "Elenco" %>
+  <%= f.input :etecnicoc, label: "Equipo técnico completo" %>
+
+
+<h4>¡Subí tres fotos de tu proyecto!</h4>
+<%= f.input :imagen1, label: "Imágen 1" %>
+<%= f.input :imagen2, label: "Imágen 2" %>
+<%= f.input :imagen3, label: "Imágen 3" %>
+
+
+<h4>Motivaciones</h4>
+<%= f.input :motivacion_direccion, label: "Motivación Dirección" %>
+<%= f.input :motivacion_produccion, label: "Motivación Producción" %>
+
+
+
+
+  <%= f.button :submit, label: "Enviar" %>
+<% end %>

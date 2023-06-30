@@ -1,5 +1,6 @@
 class FichaTecnicasController < ApplicationController
     def index
-    @ficha_tecnicas = FichaTecnica.all
+      @ficha_tecnica = FichaTecnica.new
     end
-end
+  end
+  

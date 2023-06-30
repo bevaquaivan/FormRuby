@@ -1,2 +1,4 @@
 class FichaTecnica < ApplicationRecord
-end
+    belongs_to :categoria, foreign_key: 'categoria_id'
+  end
+  
