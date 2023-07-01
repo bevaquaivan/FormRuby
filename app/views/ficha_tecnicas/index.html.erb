@@ -1,35 +1,195 @@
-<h1>CONCURSO MYDECK </h1>
-<h3> CONCURSO DE CORTOMETRAJES "MUJERES Y DIVERSIDADES EN CONSTRUCCIÓN" </h3>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulario con banner y pie de página</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-<%= simple_form_for @ficha_tecnica do |f| %>
+    .container {
+      margin-top: 20px;
+    }
 
-  <h4>Información General</h4>
-  <%= f.select :categoria_id, options_for_select(['Cortometraje', 'Ficción', 'Animación']), label: "Categoría" %>
-  <%= f.input :titulo, label: "Título" %>
-  <%= f.input :link, label: "Link" %>
-  <%= f.input :contraseña, label: "Contraseña" %>
-  <%= f.input :afiche, label: "Afiche" %>
+    .formulario {
+      width: 400px;
+      padding: 20px;
+      border: 2px solid #ccc;
+      background-color: #f9f9f9;
+      margin: 0 auto;
+    }
 
-<h4>Información Técnica</h4>
-  <%= f.input :pais, label: "País" %>
-  <%= f.input :year, label: "Año" %>
-  <%= f.input :duracion, label: "Duración en minutos" %>
-  <%= f.input :elenco, label: "Elenco" %>
-  <%= f.input :etecnicoc, label: "Equipo técnico completo" %>
+    .formulario h1 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
 
+    .formulario h3 {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
 
-<h4>¡Subí tres fotos de tu proyecto!</h4>
-<%= f.input :imagen1, label: "Imágen 1" %>
-<%= f.input :imagen2, label: "Imágen 2" %>
-<%= f.input :imagen3, label: "Imágen 3" %>
+    .formulario form {
+      width: 100%;
+    }
 
+    .formulario h4 {
+      font-size: 16px;
+      margin-top: 20px;
+    }
 
-<h4>Motivaciones</h4>
-<%= f.input :motivacion_direccion, label: "Motivación Dirección" %>
-<%= f.input :motivacion_produccion, label: "Motivación Producción" %>
+    .formulario label {
+      display: block;
+      margin-top: 10px;
+    }
 
+    .formulario input[type="text"],
+    .formulario input[type="password"],
+    .formulario textarea,
+    .formulario select {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
 
+    .formulario input[type="file"] {
+      margin-top: 10px;
+    }
 
+    .formulario input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-  <%= f.button :submit, label: "Enviar" %>
-<% end %>
+    .formulario input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .footer-brand {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .footer-brand img {
+      max-width: 100px;
+    }
+
+    .banner-brand {
+      padding: 10px;
+      text-align: center;
+      top: 10px;
+      left: 10px;
+      z-index: 9999;
+    }
+
+    .banner-brand img {
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="banner-brand">
+    <a href="https://www.gba.gob.ar/">
+      <img src="https://gba.gob.ar/imagenes/logo_gba_footer_blanco.svg" alt="logo buenos aires provincia">
+    </a>
+  </div>
+</div>
+
+<div class="formulario">
+  <h1>CONCURSO MYDECK</h1>
+  <h3>CONCURSO DE CORTOMETRAJES "MUJERES Y DIVERSIDADES EN CONSTRUCCIÓN"</h3>
+
+  <form>
+    <%= form_with(model: @ficha_tecnica, url: create_ficha_tecnica_path, local: true, method: :post, multipart: true) do |f| %>
+
+    <h4>Información General</h4>
+    <div>
+      <label for="categoria_id">Categoría:</label>
+      <%= f.select :categoria_id, options_for_select(['Cortometraje', 'Ficción', 'Animación']), label: false, id: "categoria_id" %>
+    </div>
+    <div>
+      <label for="titulo">Título:</label>
+      <%= f.text_field :titulo, label: false, id: "titulo" %>
+    </div>
+    <div>
+      <label for="link">Link:</label>
+      <%= f.text_field :link, label: false, id: "link" %>
+    </div>
+    <div>
+      <label for="contraseña">Contraseña:</label>
+      <%= f.password_field :contraseña, label: false, id: "contraseña" %>
+    </div>
+    <div>
+      <label for="imagen1">Afiche:</label>
+      <%= f.file_field :imagen1, label: false, id: "imagen1" %>
+    </div>
+
+    <h4>Información Técnica</h4>
+    <div>
+      <%= f.label :pais, "País:" %>
+      <%= f.text_field :pais, label: false, id: "pais" %>
+    </div>
+    <div>
+      <%= f.label :year, "Año:" %>
+      <%= f.text_field :year, label: false, id: "year" %>
+    </div>
+    <div>
+      <%= f.label :duracion, "Duración en minutos:" %>
+      <%= f.text_field :duracion, label: false, id: "duracion" %>
+    </div>
+    <div>
+      <%= f.label :elenco, "Elenco:" %>
+      <%= f.text_area :elenco, label: false, id: "elenco", rows: 5 %>
+    </div>
+    <div>
+      <%= f.label :etecnicoc, "Equipo técnico completo:" %>
+      <%= f.text_area :etecnicoc, label: false, id: "etecnicoc", rows: 5 %>
+    </div>
+
+    <h4>¡Subí tres fotos de tu proyecto!</h4>
+    <div>
+      <%= f.label :imagen1, "Imagen 1:" %>
+      <%= f.file_field :imagen1, label: false, id: "imagen1" %>
+    </div>
+    <div>
+      <%= f.label :imagen2, "Imagen 2:" %>
+      <%= f.file_field :imagen2, label: false, id: "imagen2" %>
+    </div>
+    <div>
+      <%= f.label :imagen3, "Imagen 3:" %>
+      <%= f.file_field :imagen3, label: false, id: "imagen3" %>
+    </div>
+
+    <h4>Motivaciones</h4>
+    <div>
+      <%= f.label :motivacion_direccion, "Motivación Dirección:" %>
+      <%= f.text_area :motivacion_direccion, label: false, id: "motivacion_direccion" %>
+    </div>
+    <div>
+      <%= f.label :motivacion_produccion, "Motivación Producción:" %>
+      <%= f.text_area :motivacion_produccion, label: false, id: "motivacion_produccion", rows: 5 %>
+    </div>
+
+    <%= f.submit "Enviar" %>
+    <% end %>
+  </form>
+</div>
+
+<div class="footer-brand">
+  <img class="logo_footer_provincia" src="https://www.gba.gob.ar/imagenes/social/provincia_icon_Footer.png" alt="ingresar a Buenos Aires Provincia">
+</div>
+
+</body>
+</html>
