@@ -95,6 +95,15 @@
     .banner-brand img {
       width: 200px;
     }
+
+    .notice-container {
+      background-color: #ffffcc;
+      border: 1px solid #ddddaa;
+      color: #333333;
+      padding: 10px;
+      margin-top: 20px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -111,80 +120,84 @@
   <h1>CONCURSO MYDECK</h1>
   <h3>CONCURSO DE CORTOMETRAJES "MUJERES Y DIVERSIDADES EN CONSTRUCCIÓN"</h3>
 
-  <form>
-    <%= form_with(model: @ficha_tecnica, url: create_ficha_tecnica_path, local: true, method: :post, multipart: true) do |f| %>
+  <%= form_with(model: @ficha_tecnica, url: ficha_tecnicas_path, local: true, method: :post, multipart: true) do |ficha_tecnica_form| %>
 
     <h4>Información General</h4>
     <div>
-      <label for="categoria_id">Categoría:</label>
-      <%= f.select :categoria_id, options_for_select(['Cortometraje', 'Ficción', 'Animación']), label: false, id: "categoria_id" %>
+      <%= ficha_tecnica_form.label :categoria_id, "Categoría:" %>
+      <%= ficha_tecnica_form.select :categoria_id, options_for_select(['Cortometraje', 'Ficción', 'Animación']), prompt: "Seleccionar categoría" %>
     </div>
     <div>
-      <label for="titulo">Título:</label>
-      <%= f.text_field :titulo, label: false, id: "titulo" %>
+      <%= ficha_tecnica_form.label :titulo, "Título:" %>
+      <%= ficha_tecnica_form.text_field :titulo %>
     </div>
     <div>
-      <label for="link">Link:</label>
-      <%= f.text_field :link, label: false, id: "link" %>
+      <%= ficha_tecnica_form.label :link, "Link:" %>
+      <%= ficha_tecnica_form.text_field :link %>
     </div>
     <div>
-      <label for="contraseña">Contraseña:</label>
-      <%= f.password_field :contraseña, label: false, id: "contraseña" %>
+      <%= ficha_tecnica_form.label :contraseña, "Contraseña:" %>
+      <%= ficha_tecnica_form.password_field :contraseña %>
     </div>
     <div>
-      <label for="imagen1">Afiche:</label>
-      <%= f.file_field :imagen1, label: false, id: "imagen1" %>
+      <%= ficha_tecnica_form.label :imagen1, "Afiche:" %>
+      <%= ficha_tecnica_form.file_field :imagen1 %>
     </div>
 
     <h4>Información Técnica</h4>
     <div>
-      <%= f.label :pais, "País:" %>
-      <%= f.text_field :pais, label: false, id: "pais" %>
+      <%= ficha_tecnica_form.label :pais, "País:" %>
+      <%= ficha_tecnica_form.text_field :pais %>
     </div>
     <div>
-      <%= f.label :year, "Año:" %>
-      <%= f.text_field :year, label: false, id: "year" %>
+      <%= ficha_tecnica_form.label :year, "Año:" %>
+      <%= ficha_tecnica_form.text_field :year %>
     </div>
     <div>
-      <%= f.label :duracion, "Duración en minutos:" %>
-      <%= f.text_field :duracion, label: false, id: "duracion" %>
+      <%= ficha_tecnica_form.label :duracion, "Duración en minutos:" %>
+      <%= ficha_tecnica_form.text_field :duracion %>
     </div>
     <div>
-      <%= f.label :elenco, "Elenco:" %>
-      <%= f.text_area :elenco, label: false, id: "elenco", rows: 5 %>
+      <%= ficha_tecnica_form.label :elenco, "Elenco:" %>
+      <%= ficha_tecnica_form.text_area :elenco, rows: 5 %>
     </div>
     <div>
-      <%= f.label :etecnicoc, "Equipo técnico completo:" %>
-      <%= f.text_area :etecnicoc, label: false, id: "etecnicoc", rows: 5 %>
+      <%= ficha_tecnica_form.label :etecnicoc, "Equipo técnico completo:" %>
+      <%= ficha_tecnica_form.text_area :etecnicoc, rows: 5 %>
     </div>
 
     <h4>¡Subí tres fotos de tu proyecto!</h4>
     <div>
-      <%= f.label :imagen1, "Imagen 1:" %>
-      <%= f.file_field :imagen1, label: false, id: "imagen1" %>
+      <%= ficha_tecnica_form.label :imagen2, "Imagen 1:" %>
+      <%= ficha_tecnica_form.file_field :imagen1 %>
     </div>
     <div>
-      <%= f.label :imagen2, "Imagen 2:" %>
-      <%= f.file_field :imagen2, label: false, id: "imagen2" %>
+      <%= ficha_tecnica_form.label :imagen2, "Imagen 2:" %>
+      <%= ficha_tecnica_form.file_field :imagen2 %>
     </div>
     <div>
-      <%= f.label :imagen3, "Imagen 3:" %>
-      <%= f.file_field :imagen3, label: false, id: "imagen3" %>
+      <%= ficha_tecnica_form.label :imagen3, "Imagen 3:" %>
+      <%= ficha_tecnica_form.file_field :imagen3 %>
     </div>
 
     <h4>Motivaciones</h4>
     <div>
-      <%= f.label :motivacion_direccion, "Motivación Dirección:" %>
-      <%= f.text_area :motivacion_direccion, label: false, id: "motivacion_direccion" %>
+      <%= ficha_tecnica_form.label :motivacion_direccion, "Motivación Dirección:" %>
+      <%= ficha_tecnica_form.text_area :motivacion_direccion %>
     </div>
     <div>
-      <%= f.label :motivacion_produccion, "Motivación Producción:" %>
-      <%= f.text_area :motivacion_produccion, label: false, id: "motivacion_produccion", rows: 5 %>
+      <%= ficha_tecnica_form.label :motivacion_produccion, "Motivación Producción:" %>
+      <%= ficha_tecnica_form.text_area :motivacion_produccion, rows: 5 %>
     </div>
 
-    <%= f.submit "Enviar" %>
-    <% end %>
-  </form>
+    <%= ficha_tecnica_form.submit "Enviar" %>
+  <% end %>
+</div>
+
+<div class="notice-container">
+  <% if notice %>
+    <p><%= notice %></p>
+  <% end %>
 </div>
 
 <div class="footer-brand">

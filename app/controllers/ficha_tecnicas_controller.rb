@@ -3,16 +3,15 @@ class FichaTecnicasController < ApplicationController
     @ficha_tecnica = FichaTecnica.all
   end
 
-  def new
-    @ficha_tecnica = FichaTecnica.new
-  end
-
   def create
     @ficha_tecnica = FichaTecnica.new(ficha_tecnica_params)
     if @ficha_tecnica.save
-      redirect_to ficha_tecnicas_path, notice: "La ficha técnica se ha creado exitosamente."
+      flash[:notice] = "La ficha técnica se ha creado exitosamente."
+      redirect_to ficha_tecnicas_path
     else
-      render :new
+      puts "Error al guardar la ficha técnica"
+      puts @ficha_tecnica.errors.full_messages.inspect
+      render :index
     end
   end
 
